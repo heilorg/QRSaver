@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="qr_type">
+        <item>URL</item>
+        <item>텍스트</item>
+        <item>연락처</item>
+        <item>전화번호</item>
+        <item>SMS</item>
+        <item>와이파이</item>
+    </string-array>
+
+</resources>

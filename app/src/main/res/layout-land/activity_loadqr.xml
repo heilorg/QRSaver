@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoadqrActivity" >
+
+    <ImageView
+        android:id="@+id/load_qr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        app:srcCompat="@drawable/qrcode" />
+
+    <TextView
+        android:id="@+id/load_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:text="수원정보과학고등학교 홈페이지"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/load_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:text="2020-06-08"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/load_exeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/colorMain"
+        android:text="@string/execute"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/load_shareBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/colorMain"
+        android:text="@string/share"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/load_deleteBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/colorMain"
+        android:text="@string/delete"
+        android:textColor="#ffffff" />
+
+</LinearLayout>
