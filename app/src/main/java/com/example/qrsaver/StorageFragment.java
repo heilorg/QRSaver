@@ -44,10 +44,13 @@ public class StorageFragment extends Fragment {
                     String title = codes.getString(codes.getColumnIndex("title"));
                     String data = codes.getString(codes.getColumnIndex("data"));
                     String date = codes.getString(codes.getColumnIndex("date"));
+                    int id = codes.getInt(codes.getColumnIndex("id"));
+                    Toast.makeText(getActivity(), id+"", Toast.LENGTH_SHORT).show();
                     QRVO qr = new QRVO();
                     qr.setTitle(title);
                     qr.setData(data);
                     qr.setDate(date);
+                    qr.setId(id);
                     qrs.add(qr);
 
                 }while(codes.moveToNext());
@@ -58,12 +61,6 @@ public class StorageFragment extends Fragment {
         rcc_qr.setLayoutManager(mLayoutManager);
         rcc_qr.addItemDecoration(new QRCodeDecoration(getActivity()));
         codeAdapter = new CodeAdapter(getActivity(), qrs);
-//        codeAdapter.setOnItemClickListener(new CodeAdapter.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(View v, int position){
-//                Toast.makeText(getActivity(), position, Toast.LENGTH_SHORT).show();
-//            }
-//        });
         rcc_qr.setAdapter(codeAdapter);
 
         db.close();

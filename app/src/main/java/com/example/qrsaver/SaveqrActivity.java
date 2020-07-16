@@ -34,44 +34,49 @@ public class SaveqrActivity extends AppCompatActivity {
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF3B6DFF));
 
+        // 이미지뷰 설정
         iv = findViewById(R.id.shooting_scannedImage);
 
+        // qr코드 스캔
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setOrientationLocked(false);
         integrator.setPrompt("QR 코드를 스캔하세요");
         integrator.initiateScan();
 
+        // 재촬영 버튼 클릭
         Button reshooting = findViewById(R.id.shooting_reshootingBtn);
         reshooting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(getIntent());
+            finish();
+            startActivity(getIntent());
             }
         });
 
+        // 실행버튼 클릭
         Button shootingExeBtn = findViewById(R.id.shooting_exeBtn);
         shootingExeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
-                startActivity(intent);
-                finish();
+            Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
+            startActivity(intent);
+            finish();
             }
         });
 
+        // 저장버트 클릭
         Button shootingSaveBtn = findViewById(R.id.shooting_saveBtn);
         shootingSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseAdapter db = new DataBaseAdapter(SaveqrActivity.this);
-                db.open();
-                EditText shootingSaveTitle = findViewById(R.id.shooting_title);
-                db.insertCode(shootingSaveTitle.getText().toString(),codeData);
-                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
-                startActivity(intent);
-                db.close();
-                finish();
+            DataBaseAdapter db = new DataBaseAdapter(SaveqrActivity.this);
+            db.open();
+            EditText shootingSaveTitle = findViewById(R.id.shooting_title);
+            db.insertCode(shootingSaveTitle.getText().toString(),codeData);
+            Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
+            startActivity(intent);
+            db.close();
+            finish();
             }
         });
     }
@@ -95,6 +100,7 @@ public class SaveqrActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // qr코드 촬영 후 데이터 페이지에 적용
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {

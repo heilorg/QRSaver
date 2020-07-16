@@ -32,9 +32,11 @@ public class CreateqrActivity extends AppCompatActivity {
 
         iv = (ImageView)findViewById(R.id.createdQR);
 
+        // 생성한 qr코드 데이터 불러오기
         Intent intent = getIntent();
         codeData = intent.getExtras().getString("data");
 
+        // 이미지 적용
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
             BitMatrix bitMatrix = multiFormatWriter.encode(codeData, BarcodeFormat.QR_CODE,200,200);
@@ -43,6 +45,7 @@ public class CreateqrActivity extends AppCompatActivity {
             iv.setImageBitmap(bitmap);
         }catch (Exception e){}
 
+        // 재촬영버튼
         Button recreateBtn = findViewById(R.id.create_recreateBtn);
         recreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,7 @@ public class CreateqrActivity extends AppCompatActivity {
             }
         });
 
+        //실행버튼
         Button createExeBtn = findViewById(R.id.create_exeBtn);
         createExeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +65,9 @@ public class CreateqrActivity extends AppCompatActivity {
             }
         });
 
-        Button saveAndExeBtn = findViewById(R.id.create_saveBtn);
-        saveAndExeBtn.setOnClickListener(new View.OnClickListener() {
+        // 저장 버튼
+        Button saveBtn = findViewById(R.id.create_saveBtn);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DataBaseAdapter db = new DataBaseAdapter(CreateqrActivity.this);

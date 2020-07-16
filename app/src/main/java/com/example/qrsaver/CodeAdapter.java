@@ -49,7 +49,7 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        QRVO qrVO = list_qr.get(position);
+        final QRVO qrVO = list_qr.get(position);
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
@@ -64,9 +64,8 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
-//                Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, LoadqrActivity.class);
-                intent.putExtra("position", position+"");
+                intent.putExtra("id", qrVO.getId()+"");
                 context.startActivity(intent);
             }
         });
@@ -90,19 +89,6 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
             qr_img = (ImageView) convertView.findViewById(R.id.qr_img);
             qr_title = (TextView) convertView.findViewById(R.id.qr_title);
             qr_date = (TextView) convertView.findViewById(R.id.qr_date);
-
-//            convertView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//
-//                    if(position != RecyclerView.NO_POSITION){
-//                        if(mListener !=null){
-//                            mListener.onItemClick(v,position);
-//                        }
-//                    }
-//                }
-//            });
         }
     }
 
