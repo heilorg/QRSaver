@@ -49,77 +49,77 @@ public class LoadqrActivity extends AppCompatActivity {
 
         // qr데이터 불러오기
         id = Integer.parseInt(intent.getExtras().getString("id"));
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
-//        DataBaseAdapter db = new DataBaseAdapter(this);
-//        db.open();
-//        Cursor codes =  db.fetchCode(id);
-//        qr = new QRVO();
-//
-//        if(codes != null){
-//            if(codes.moveToFirst()){
-//                String title = codes.getString(codes.getColumnIndex("title"));
-//                String data = codes.getString(codes.getColumnIndex("data"));
-//                String date = codes.getString(codes.getColumnIndex("date"));
-//                qr.setTitle(title);
-//                qr.setData(data);
-//                qr.setDate(date);
-//            }
-//        }
-//        db.close();
-//
-//        iv = findViewById(R.id.load_qr);
-//
-//        // qr데이터 적용
-//        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-//        try{
-//            BitMatrix bitMatrix = multiFormatWriter.encode(qr.getData(), BarcodeFormat.QR_CODE,200,200);
-//            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-//            bitmap = barcodeEncoder.createBitmap(bitMatrix);
-//            iv.setImageBitmap(bitmap);
-//        }catch (Exception e){}
-//        TextView title = (TextView)findViewById(R.id.load_title);
-//        TextView date = (TextView)findViewById(R.id.load_date);
-//        title.setText(qr.getTitle());
-//        date.setText(qr.getDate());
-//
-//        // 실행버튼
-//        exeBtn = findViewById(R.id.load_exeBtn);
-//        exeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(qr.getData()));
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-//
-//        // 공유버튼 클릭
-//        shareBtn = findViewById(R.id.load_shareBtn);
-//        shareBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-//                Uri screenshotUri = getImageUri(v.getContext(), bitmap);
-//
-//                sharingIntent.setType("image/png");
-//                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-//                startActivity(Intent.createChooser(sharingIntent, "Share image using"));
-//            }
-//        });
-//
-//        // 삭제 버튼 클릭
-//        deleteBtn = findViewById(R.id.load_deleteBtn);
-//        deleteBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DataBaseAdapter db = new DataBaseAdapter(v.getContext());
-//                db.open();
-//                db.deleteCode(id);
-//                db.close();
-//                Toast.makeText(v.getContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//        });
+//        Toast.makeText(this, id+"", Toast.LENGTH_SHORT).show();
+        DataBaseAdapter db = new DataBaseAdapter(this);
+        db.open();
+        Cursor codes =  db.fetchCode(id);
+        qr = new QRVO();
+
+        if(codes != null){
+            if(codes.moveToFirst()){
+                String title = codes.getString(codes.getColumnIndex("title"));
+                String data = codes.getString(codes.getColumnIndex("data"));
+                String date = codes.getString(codes.getColumnIndex("date"));
+                qr.setTitle(title);
+                qr.setData(data);
+                qr.setDate(date);
+            }
+        }
+        db.close();
+
+        iv = findViewById(R.id.load_qr);
+
+        // qr데이터 적용
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try{
+            BitMatrix bitMatrix = multiFormatWriter.encode(qr.getData(), BarcodeFormat.QR_CODE,200,200);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            iv.setImageBitmap(bitmap);
+        }catch (Exception e){}
+        TextView title = (TextView)findViewById(R.id.load_title);
+        TextView date = (TextView)findViewById(R.id.load_date);
+        title.setText(qr.getTitle());
+        date.setText(qr.getDate());
+
+        // 실행버튼
+        exeBtn = findViewById(R.id.load_exeBtn);
+        exeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(qr.getData()));
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 공유버튼 클릭
+        shareBtn = findViewById(R.id.load_shareBtn);
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                Uri screenshotUri = getImageUri(v.getContext(), bitmap);
+
+                sharingIntent.setType("image/png");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+                startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+            }
+        });
+
+        // 삭제 버튼 클릭
+        deleteBtn = findViewById(R.id.load_deleteBtn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataBaseAdapter db = new DataBaseAdapter(v.getContext());
+                db.open();
+                db.deleteCode(id);
+                db.close();
+                Toast.makeText(v.getContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF3B6DFF));
     }

@@ -7,6 +7,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+
+// 리사이클러 뷰 아이템 디자인 설정
 public class QRCodeDecoration extends RecyclerView.ItemDecoration {
     private int spanCount;
     private int spacing;

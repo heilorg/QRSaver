@@ -32,12 +32,23 @@ public class StorageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = (ViewGroup)inflater.inflate(R.layout.fragment_storage, container, false);
+        rcc_qr = (RecyclerView) view.findViewById(R.id.rcc_qr);
 
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        // 프래그먼트 생명주기 - 유저에게 보일때마다
+        super.onStart();
+
+        //데이터베이스 로드
         DataBaseAdapter db = new DataBaseAdapter(getActivity());
         db.open();
         Cursor codes =  db.fetchAllCode();
         ArrayList<QRVO> qrs = new ArrayList<QRVO>();
 
+        // qr코드의 수만큼 반복
         if(codes != null){
             if(codes.moveToFirst()){
                 do{
@@ -56,7 +67,8 @@ public class StorageFragment extends Fragment {
                 }while(codes.moveToNext());
             }
         }
-        rcc_qr = (RecyclerView) view.findViewById(R.id.rcc_qr);
+
+        // 리사이클러 뷰에 적용 (렌더)
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcc_qr.setLayoutManager(mLayoutManager);
         rcc_qr.addItemDecoration(new QRCodeDecoration(getActivity()));
@@ -64,6 +76,5 @@ public class StorageFragment extends Fragment {
         rcc_qr.setAdapter(codeAdapter);
 
         db.close();
-        return view;
     }
 }

@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle(R.string.app_name);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF3B6DFF));
 
+
+        //뷰 페이저 설정
         pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
 
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         pager.setAdapter(adapter);
 
+
+        // 하단 메뉴 설정
         final BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 페이지 이동시 메뉴 변경 적용
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -95,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 액티비티 로드 시 뷰 페이저와 하단 메뉴 설정
         Intent intent = getIntent();
         if(intent != null){
             int page = intent.getExtras().getInt("page");
@@ -113,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 뷰 페이저 설정
     class MyPagerAdapter extends FragmentStatePagerAdapter {
         ArrayList<Fragment> items = new ArrayList<Fragment>();
 

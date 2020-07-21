@@ -1,10 +1,11 @@
 package com.example.qrsaver;
 
+// qr코드 데이터 저장 포맷
 public class QRVO{
-    private String title;
-    private String date;
-    private String data;
-    private int id;
+    private String title; // 제목
+    private String date; // 생성 시간
+    private String data; // 데이터
+    private int id; // 아이디
 
     public String getDate() {
         return date;

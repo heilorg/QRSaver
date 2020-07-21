@@ -26,6 +26,8 @@ public class PhotoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_photo, container, false);
+
+        // 촬영 세부 페이지 이동 버튼 클릭 이벤트
         ImageView item1 = (ImageView)viewGroup.findViewById(R.id.saveQr);
         item1.setOnClickListener(new View.OnClickListener() {
             @Override

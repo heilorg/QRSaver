@@ -22,6 +22,7 @@ public class NavActivity extends AppCompatActivity {
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF3B6DFF));
 
+        // 촬영 페이지 이동 버튼 클릭 이벤트
         ViewGroup movePhoto = (ViewGroup)findViewById(R.id.movePhoto);
         movePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +33,7 @@ public class NavActivity extends AppCompatActivity {
             }
         });
 
+        // 저장소 페이지 이동 버튼 클릭 이벤트
         ViewGroup moveStorage = (ViewGroup)findViewById(R.id.moveStorage);
         moveStorage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,7 @@ public class NavActivity extends AppCompatActivity {
             }
         });
 
+        // 생성 페이지 이동 버튼 클릭 이벤트
         ViewGroup moveCreation = (ViewGroup)findViewById(R.id.moveCreation);
         moveCreation.setOnClickListener(new View.OnClickListener() {
             @Override

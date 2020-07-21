@@ -51,6 +51,7 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final QRVO qrVO = list_qr.get(position);
 
+        // 리사이클러 뷰 아이템 설정
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
             BitMatrix bitMatrix = multiFormatWriter.encode(qrVO.getData(), BarcodeFormat.QR_CODE,200,200);
@@ -60,6 +61,8 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
         }catch (Exception e){}
         holder.qr_title.setText(qrVO.getTitle());
         holder.qr_date.setText(qrVO.getDate());
+
+        // 리사이클러 뷰 아이템 클릭 이벤트
         holder.qr_panel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

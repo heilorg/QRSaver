@@ -25,18 +25,20 @@ public class CreationFragment extends Fragment {
     public CreationFragment() {
         // Required empty public constructor
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_creation, container, false);
+
+        // 콤보박스 설정
         Spinner spinner = (Spinner)viewGroup.findViewById(R.id.spinner);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.qr_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        // 생성 버튼 이벤트 설정
         Button createQr = viewGroup.findViewById(R.id.createQr);
         final EditText createData = (EditText)viewGroup.findViewById(R.id.createData);
         createQr.setOnClickListener(new View.OnClickListener() {
