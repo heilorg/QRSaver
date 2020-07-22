@@ -69,14 +69,20 @@ public class SaveqrActivity extends AppCompatActivity {
         shootingSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            DataBaseAdapter db = new DataBaseAdapter(SaveqrActivity.this);
-            db.open();
-            EditText shootingSaveTitle = findViewById(R.id.shooting_title);
-            db.insertCode(shootingSaveTitle.getText().toString(),codeData);
-            Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
-            startActivity(intent);
-            db.close();
-            finish();
+                EditText shootingSaveTitle = findViewById(R.id.shooting_title);
+                String title = shootingSaveTitle.getText().toString().trim();
+                if(!title.equals("")){
+                    DataBaseAdapter db = new DataBaseAdapter(SaveqrActivity.this);
+                    db.open();
+                    db.insertCode(title,codeData);
+                    Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(codeData));
+                    startActivity(intent);
+                    db.close();
+                    finish();
+                }else{
+                    Toast.makeText(v.getContext(), "빈 텍스트는 입력할 수 없습니다.", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -117,7 +123,10 @@ public class SaveqrActivity extends AppCompatActivity {
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                     iv.setImageBitmap(bitmap);
-                }catch (Exception e){}
+                }catch (Exception e){
+                    Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
+                    finish();
+                }
                 // todo
             }
         } else {

@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 /**
@@ -44,9 +45,14 @@ public class CreationFragment extends Fragment {
         createQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CreateqrActivity.class);
-                intent.putExtra("data", createData.getText().toString());
-                startActivity(intent);
+                String data = createData.getText().toString().trim();
+                if(!data.equals("")){
+                    Intent intent = new Intent(getActivity(), CreateqrActivity.class);
+                    intent.putExtra("data", data);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "빈 텍스트는 입력할 수 없습니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
         return viewGroup;

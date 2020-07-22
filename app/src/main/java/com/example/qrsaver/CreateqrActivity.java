@@ -15,6 +15,8 @@ import android.widget.ImageView;
 
 
 import android.graphics.Bitmap;
+import android.widget.Toast;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
@@ -70,12 +72,17 @@ public class CreateqrActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseAdapter db = new DataBaseAdapter(CreateqrActivity.this);
-                db.open();
                 EditText createTitle = findViewById(R.id.createTitle);
-                db.insertCode(createTitle.getText().toString(), codeData);
-                db.close();
-                finish();
+                String title = createTitle.getText().toString().trim();
+                if(!title.equals("")){
+                    DataBaseAdapter db = new DataBaseAdapter(CreateqrActivity.this);
+                    db.open();
+                    db.insertCode(createTitle.getText().toString(), codeData);
+                    db.close();
+                    finish();
+                }else{
+                    Toast.makeText(v.getContext(), "빈 텍스트는 입력할 수 없습니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
